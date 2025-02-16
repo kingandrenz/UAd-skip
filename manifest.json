@@ -1,12 +1,12 @@
 {
-	"maifest_version": 3,
+	"manifest_version": 3,
 	"name": "Uadskip",
 	"version": "1.0",
 	"description": "Skip video ads on Youtube",
 	"action": {
 		"default_popup": "popup/popup.html"
 	},
-	"permission": ["activeTab", "scripting", "storage"],
+	"permissions": ["activeTab", "scripting", "storage"],
 	"background": {
 		"service_worker": "background.js"
 	},

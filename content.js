@@ -15,7 +15,7 @@ class AdSkip {
 			if (this.adModuleElement) {
 				this.checkForAd();
 				this.ytAdModuleObserver = new MutationObserver(() => this.checkForAd());
-				this.ytAdModuleObserver.observe(this.adModuleElement, config);
+				this.ytAdModuleObserver.observe(this.adModuleElement, { subtree: true, childList: true });
 			}
 		}
 	}
@@ -42,12 +42,12 @@ class AdSkip {
 		videoElement.parentElement.style.position = 'relative';
 		videoElement.parentElement.insertAdjacentHTML(
 			'afterend',
-			`<button id="ad-skip-button">
-				<span>AdSkip</span>
-				<svg height="100%" viewBox="-6 -6 36 36" width="100%">
-					<path d="M5,18l10-6L5,6V18L5,18z M19,6h-2v12h2h2V6z" fill="#fff"/>
-				</svg>
-			</button>`
+	        `<button id="ad-skip-button">
+		        <span>AdSkip</span>
+		        <svg height="100%" viewBox="-6 -6 36 36" width="100%">
+	          		<path d="M5,18l10-6L5,6V18L5,18z M19,6h-2v12h2V6z" fill="#fff"></path>
+	        	</svg>
+	        </button>`
 		);
 
 		const adSkipButton = document.querySelector('#ad-skip-button');
@@ -77,9 +77,9 @@ class AdSkip {
 	// Skip the ad when the button is clicked
 	skipAd() {
 		const videoElement = document.querySelector('video');
-		const skipButton = document.querySelector('button.ytp-ad-skip-button-modern, button.ytp-ad-skip-button');
+		const skipButton = document.querySelector('button.ytp-ad-skip-button-modern');
 
-		if (videoElement $$ isFinite(videoElement.duration)) {
+		if (videoElement && isFinite(videoElement.duration)) {
 			videoElement.currentTime = videoElement.duration;
 		}
 
@@ -98,7 +98,7 @@ function observeDocument(callback) {
 		callback(observer);
 	});
 
-	observer.observe(document, config);
+	observer.observe(document, { subtree: true, childList: true });
 }
 
 
