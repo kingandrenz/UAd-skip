@@ -1,20 +1,32 @@
 {
-	"maifest_version": 3,
-	"name": "Uadskip",
-	"version": "1.0",
-	"description": "Skip video ads on Youtube",
-	"action": {
-		"default_popup": "popup/popup.html"
-	},
-	"permission": ["activeTab", "scripting", "storage"],
-	"background": {
-		"service_worker": "background.js"
-	},
-	"content_scripts": [
-		{
-			"js": ["content.js"],
-			"matches": ["https://www.youtube.com/*", "https://youtube.com/*"],
-			"run_at": "document_end"
-		}
-	]
+  "manifest_version": 3,
+  "name": "Ad Interceptor & Replacer",
+  "version": "1.0",
+  "description": "Blocks ads and replaces them with custom content.",
+  "permissions": [
+    "declarativeNetRequest",
+    "declarativeNetRequestWithHostAccess",
+    "storage",
+    "activeTab"
+  ],
+  "host_permissions": ["<all_urls>"],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "action": {
+    "default_popup": "popup/popup.html"
+  },
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "1",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  }
 }

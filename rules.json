@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "://.doubleclick.net/*",
+      "resourceTypes": ["image", "script", "xmlhttprequest", "sub_frame"]
+    }
+  },
+  {
+    "id": 2,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "://.ads./",
+      "resourceTypes": ["image", "script", "xmlhttprequest", "sub_frame"]
+    }
+  },
+  {
+    "id": 3,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": ":///ad",
+      "resourceTypes": ["image", "script", "xmlhttprequest", "sub_frame"]
+    }
+  }
+]

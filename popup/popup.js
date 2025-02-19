@@ -1,12 +1,18 @@
-function main() {
-	const skipButton = document.querySelector('.skip-button');
+let isReplacing = true;
+const button = document.getElementById("toggle");
 
-	skipButton.addEventListener('click', async () => {
-		const [tab] = await chrome.tabs.query({ active: true} ); // get current active tab
+button.addEventListener("click", function () {
+  isReplacing = !isReplacing;
+  chrome.storage.local.set({ isReplacing });
+  button.textContent = isReplacing ? "Disable Ad Recaer" : "Enable Ad Replacer";
+});
 
-		await chrome.tabs.sendMessage(tab.id, { action: 'skip' }); //send message from the tab
-	});
-
-}
-
-main();
+// load saved state
+chrome.storage.local.get(["isReplacing"], function (data) {
+  if (data.isReplacing !== undefined) {
+    isReplacing = data.isReplacing;
+    button.textContent = isReplacing
+      ? "Disable Ad Replacer"
+      : "Enable Ad Replacer";
+  }
+});
